@@ -5,17 +5,25 @@
 const menuButton = document.getElementById("menuButton");
 const nav = document.querySelector("nav");
 
-menuButton.addEventListener("click", () => {
-    nav.classList.toggle("active");
-});
+if (menuButton && nav) {
+    menuButton.addEventListener("click", () => {
+        nav.classList.toggle("active");
+    });
+}
 
 
-// Close mobile menu when clicking a link
+// ================================
+// Close Mobile Menu
+// ================================
 
 document.querySelectorAll("nav a").forEach(link => {
 
     link.addEventListener("click", () => {
-        nav.classList.remove("active");
+
+        if (nav) {
+            nav.classList.remove("active");
+        }
+
     });
 
 });
@@ -25,27 +33,17 @@ document.querySelectorAll("nav a").forEach(link => {
 // Modrinth Button
 // ================================
 
-// Replace this URL with your actual Modrinth project URL
-const modrinthURL = "#";
+const modrinthURL = "https://modrinth.com/mod/z-client";
 
 const modrinthButton = document.getElementById("modrinthButton");
 
-modrinthButton.addEventListener("click", (event) => {
-
-    if (modrinthURL === "#") {
-
-        event.preventDefault();
-
-        alert(
-            "ZClient is currently waiting for Modrinth approval. 🚀"
-        );
-
-        return;
-    }
+if (modrinthButton) {
 
     modrinthButton.href = modrinthURL;
+    modrinthButton.target = "_blank";
+    modrinthButton.rel = "noopener noreferrer";
 
-});
+}
 
 
 // ================================
@@ -56,35 +54,39 @@ const revealElements = document.querySelectorAll(
     ".feature-card, .about-card, .download-card"
 );
 
-const observer = new IntersectionObserver(
-    entries => {
+if ("IntersectionObserver" in window) {
 
-        entries.forEach(entry => {
+    const observer = new IntersectionObserver(
+        entries => {
 
-            if (entry.isIntersecting) {
+            entries.forEach(entry => {
 
-                entry.target.classList.add("visible");
+                if (entry.isIntersecting) {
 
-                observer.unobserve(entry.target);
+                    entry.target.classList.add("visible");
 
-            }
+                    observer.unobserve(entry.target);
 
-        });
+                }
 
-    },
-    {
-        threshold: 0.15
-    }
-);
+            });
+
+        },
+        {
+            threshold: 0.15
+        }
+    );
 
 
-revealElements.forEach(element => {
+    revealElements.forEach(element => {
 
-    element.classList.add("reveal");
+        element.classList.add("reveal");
 
-    observer.observe(element);
+        observer.observe(element);
 
-});
+    });
+
+}
 
 
 // ================================
