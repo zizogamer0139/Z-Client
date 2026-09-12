@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://zclient.zizo.2bd.net">Website</a> •
-  <a href="https://modrinth.com">Modrinth</a> •
+  <a href="https://modrinth.com/mod/z-client">Modrinth</a> •
   <a href="https://github.com/zizogamer0139/Z-Client/issues">Issues</a>
 </p>
 
